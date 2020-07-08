@@ -1,0 +1,56 @@
+#container {
+  font-family: arial;
+  background-color: #f7eeee;
+  border: 2px solid rgb(202, 181, 181);
+  border-radius: 0.2rem;
+  width: 40%;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  text-align: center;
+
+  select {
+    border-radius: 1rem;
+    padding: 0.4rem;
+    margin-bottom: 0.6rem;
+    width: 60%;
+    outline: 0rem;
+  }
+
+  button {
+    padding: 0.6rem;
+    border-radius: 10rem;
+    width: 60%;
+    margin-bottom: 1rem;
+    outline: 0rem;
+
+    &:hover {
+      background-color: #ffa0a0;
+      box-shadow: 0.2rem 0.2rem 0.2rem #e26e6e;
+      cursor: pointer;
+    }
+
+    &:active {
+      transform: translateY(15%);
+    }
+  }
+}
+
+#loading_spinner {
+  width: 25%;
+  height: 25%;
+}
+
+#error {
+  border: 0.2rem solid #e26e6e;
+  border-radius: 0.8rem;
+  background-color: rgb(233, 123, 123);
+  padding: 0.6rem;
+  width: 40%;
+  margin: auto;
+  text-align: center;
+  text-align-last: center;
+
+  -moz-box-shadow: 0.3rem 0.3rem 0.4rem rgb(233, 123, 123);
+  -webkit-box-shadow: 0.3rem 0.3rem 0.4rem rgb(233, 123, 123);
+  box-shadow: 0.3rem 0.3rem 0.4rem rgb(233, 123, 123);
+}

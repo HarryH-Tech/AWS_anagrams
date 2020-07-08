@@ -1,16 +1,16 @@
 import React from "react";
 
-import Dropdown from "./components/Dropdown";
+import Header from "./components/Header";
+import OptionsContainer from "./components/OptionsContainer";
 
-const r = (string) => {
-  return string.split(",")[0];
-};
+import "./assets/app.scss";
 
 function App(props) {
   return (
-    <>
-      <Dropdown />
-    </>
+    <div id="app-container">
+      <Header />
+      <OptionsContainer />
+    </div>
   );
 }
 
