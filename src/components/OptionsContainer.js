@@ -5,11 +5,13 @@ import { useSpring, animated } from "react-spring";
 
 import "../assets/options_container.scss";
 
-import LoadingSpinner from "../assets/images/LoadingSpinner.gif";
-
 function OptionsContainer() {
-  const [name, setName] = useState(null);
   const [anagram, setAnagram] = useState(null);
+
+  const [entrepreneurDetails, setEntrepreneurDetails] = useState({
+    name: "",
+    description: "",
+  });
 
   const [appDetails, setAppDetails] = useState({
     showName: false,
@@ -18,6 +20,7 @@ function OptionsContainer() {
   });
 
   const { showName, loading, error } = appDetails;
+  const { name, description } = entrepreneurDetails;
 
   const styleProps = useSpring({
     loop: true,
@@ -34,7 +37,10 @@ function OptionsContainer() {
         //  .then((res) => console.log(res.data));
         .then((response) => {
           setAppDetails({ showName: true, loading: false });
-          setName(response.data.name);
+          setEntrepreneurDetails({
+            name: response.data.name,
+            description: response.data.description,
+          });
         })
         .catch((err) => {
           setAppDetails({
@@ -52,9 +58,31 @@ function OptionsContainer() {
   };
 
   const handleDropdownChange = (e) => {
-    setName("");
+    setEntrepreneurDetails({ name: "" });
     setAppDetails({ ...appDetails, showName: false });
     setAnagram(e.target.value);
+  };
+
+  const formatDescription = (descriptionString) => {
+    let splitString = descriptionString.split(" ");
+    if (descriptionString) {
+      //If only 1 item in array return array
+      if (splitString.length === 1) {
+        return descriptionString;
+      }
+
+      if (splitString.length === 2) {
+        return splitString.map((ds, index) => {
+          return index + 1 > splitString.length - 1 ? " and " + ds : ds;
+        });
+      }
+
+      if (splitString.length > 2) {
+        return splitString.map((ds, index) => {
+          return index + 1 > splitString.length - 1 ? " and " + ds : ds + ", ";
+        });
+      }
+    }
   };
 
   return (
@@ -77,22 +105,34 @@ function OptionsContainer() {
 
         <option>beszofejf</option>
         <option>dosreyckaj</option>
+        <option>ichmchlleezlynta</option>
         <option>mkuselno</option>
         <option>pegaarryl</option>
+        <option>nneajcickiwo</option>
         <option>seevtobjs</option>
+        <option>evangelspie</option>
+        <option>nnieaaot</option>
+        <option>lltegibas</option>
       </select>
 
       <button onClick={fetchData}>View Name</button>
-      {showName && anagram && (
+      {showName && anagram && description && (
         <animated.div id="result-text" style={styleProps}>
-          {anagram} is an anagram of <strong>{name}</strong>.
+          {anagram} is an anagram of <strong>{name}</strong>. {name} founded{" "}
+          {formatDescription(description)}.
         </animated.div>
       )}
       <br />
       {loading && (
-        <img id="loading_spinner" src={LoadingSpinner} alt="Loading..." />
+        <img
+          id="loading_spinner"
+          src={
+            "https://thumbs.gfycat.com/OrderlyHeartyAsiaticlesserfreshwaterclam-small.gif"
+          }
+          alt="Loading..."
+        />
       )}
-
+      <br />
       {error && <div id="error">{error}</div>}
     </div>
   );
